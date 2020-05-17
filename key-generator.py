@@ -32,6 +32,13 @@ class KeyGenerator:
         
         self.public_key = (e, n)
 
+        _, d, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
+
+        while d < 0:
+            d += fi_of_n
+
+        self.private_key = (d, e)
+
 keyGenerator = KeyGenerator()
 
-print(keyGenerator.public_key)
+print(keyGenerator.public_key, '\n\n', keyGenerator.private_key)
