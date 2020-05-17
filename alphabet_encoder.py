@@ -3,7 +3,6 @@ class AlphabetEncoder:
         encoded_string = ''
         for ch in string:
             encoded_string += str(ord(ch))
-            # print(ch)
         return int(encoded_string)
 
 # alphabetEncoder = AlphabetEncoder()
