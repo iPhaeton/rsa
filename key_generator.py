@@ -2,7 +2,8 @@ from Crypto.Util import number
 from pulverizer import Pulverizer
 
 class KeyGenerator:
-    def __init__(self):
+    def __init__(self, size):
+        self.size = size
         self.pulverizer = Pulverizer()
         self.public_key = None
         self.private_key = None
@@ -12,8 +13,8 @@ class KeyGenerator:
         return number.getPrime(N)
 
     def calculate_n(self):
-        p = self.getPrime(1024)
-        q = self.getPrime(1024)
+        p = self.getPrime(self.size)
+        q = self.getPrime(self.size)
         return p, q, p * q
 
     def calculate_fi(self, p, q):
@@ -26,7 +27,6 @@ class KeyGenerator:
             e = self.getPrime(8)
             gcd, _, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
         return e
-        # return (fi_of_n + self.getPrime(256)) % fi_of_n
 
     def generate_keys(self):
         if (self.public_key != None):
@@ -45,10 +45,13 @@ class KeyGenerator:
         while d < 0:
             d += fi_of_n
 
+        # print(e, d)
+        # print(self.pulverizer.calculate_gcd(e, fi_of_n))
+        # print(d, (d*e) % fi_of_n)
 
         self.public_key = (e, n)
         self.private_key = (d, n)
 
-keyGenerator = KeyGenerator()
+# keyGenerator = KeyGenerator(16)
 
 # print(keyGenerator.public_key, '\n\n', keyGenerator.private_key)
