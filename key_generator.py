@@ -20,7 +20,13 @@ class KeyGenerator:
         return (p - 1) * (q - 1)
 
     def calculate_e(self, n, fi_of_n):
-        return fi_of_n + self.getPrime(256)
+        e = self.getPrime(8)
+        gcd, _, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
+        while gcd != 1:
+            e = self.getPrime(8)
+            gcd, _, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
+        return e
+        # return (fi_of_n + self.getPrime(256)) % fi_of_n
 
     def generate_keys(self):
         if (self.public_key != None):
@@ -28,17 +34,21 @@ class KeyGenerator:
 
         p, q, n = self.calculate_n()
         fi_of_n = self.calculate_fi(p, q)
-        e = self.calculate_e(n, fi_of_n)
-        
-        self.public_key = (e, n)
 
-        _, d, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
+        # todo: check, why pulverizer doesn't always return a correct reverse
+        e = self.calculate_e(n, fi_of_n)
+        _, _, d = self.pulverizer.calculate_gcd(e, fi_of_n)
+        while (d*e) % fi_of_n != 1:
+            e = self.calculate_e(n, fi_of_n)
+            _, _, d = self.pulverizer.calculate_gcd(e, fi_of_n)
 
         while d < 0:
             d += fi_of_n
 
-        self.private_key = (d, e)
 
-# keyGenerator = KeyGenerator()
+        self.public_key = (e, n)
+        self.private_key = (d, n)
+
+keyGenerator = KeyGenerator()
 
 # print(keyGenerator.public_key, '\n\n', keyGenerator.private_key)
