@@ -37,7 +37,7 @@ class Pulverizer:
         return quotient, remainder
 
     def get_current_result(self):
-        return self.b, self.t, -self.s
+        return self.b, self.t, self.s
 
     def calculate_gcd(self, a, b):
         self.initialize(a, b)
@@ -53,12 +53,12 @@ class Pulverizer:
 
         return self.get_current_result()
 
-pulverizer = Pulverizer()
-gcd, t, s = pulverizer.calculate_gcd(24, 12)
-print('Result:', gcd, t, s)
+# pulverizer = Pulverizer()
+# gcd, t, s = pulverizer.calculate_gcd(24, 12)
+# print('Result:', gcd, t, s)
 
-gcd, t, s = pulverizer.calculate_gcd(135, 59)
-print('Result:', gcd, t, s)
+# gcd, t, s = pulverizer.calculate_gcd(135, 59)
+# print('Result:', gcd, t, s)
 
-gcd, t, s = pulverizer.calculate_gcd(259, 70)
-print('Result:', gcd, t, s)
+# gcd, t, s = pulverizer.calculate_gcd(259, 70)
+# print('Result:', gcd, t, s)
