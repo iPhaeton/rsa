@@ -39,6 +39,6 @@ class KeyGenerator:
 
         self.private_key = (d, e)
 
-keyGenerator = KeyGenerator()
+# keyGenerator = KeyGenerator()
 
-print(keyGenerator.public_key, '\n\n', keyGenerator.private_key)
+# print(keyGenerator.public_key, '\n\n', keyGenerator.private_key)
