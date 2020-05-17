@@ -6,11 +6,14 @@ class Encoder(AlphabetEncoder):
         self.public_key = public_key
 
     def encode(self, string):
-        print(self.public_key[0])
         message = super().encode(string)
+        print(message)
         encoded_message = pow(message, self.public_key[0]) % self.public_key[1]
         return encoded_message
 
-keyGenerator = KeyGenerator()
+keyGenerator = KeyGenerator(10)
+print(keyGenerator.public_key, keyGenerator.private_key)
 encoder = Encoder(keyGenerator.public_key)
-print(encoder.encode('Hello world!'))
+encoded_message = encoder.encode('Hi')
+# print(encoded_message)
+print(keyGenerator.decode(encoded_message))

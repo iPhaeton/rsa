@@ -21,10 +21,10 @@ class KeyGenerator:
         return (p - 1) * (q - 1)
 
     def calculate_e(self, n, fi_of_n):
-        e = self.getPrime(8)
+        e = self.getPrime(self.size // 2)
         gcd, _, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
         while gcd != 1:
-            e = self.getPrime(8)
+            e = self.getPrime(self.size // 2)
             gcd, _, _ = self.pulverizer.calculate_gcd(e, fi_of_n)
         return e
 
@@ -51,6 +51,10 @@ class KeyGenerator:
 
         self.public_key = (e, n)
         self.private_key = (d, n)
+
+    def decode(self, encoded_message):
+        return pow(encoded_message, self.private_key[0]) % self.private_key[1]
+
 
 # keyGenerator = KeyGenerator(16)
 
