@@ -4,6 +4,7 @@ from pulverizer import Pulverizer
 
 class Encoder(AlphabetEncoder):
     def __init__(self, public_key):
+        super().__init__()
         self.public_key = public_key
         self.pulverizer = Pulverizer()
 
