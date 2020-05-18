@@ -2,8 +2,9 @@ from Crypto.Util import number
 from pulverizer import Pulverizer
 
 class KeyGenerator:
-    def __init__(self, size):
+    def __init__(self, size, test = False):
         self.size = size
+        self.test = test
         self.pulverizer = Pulverizer()
         self.public_key = None
         self.private_key = None
@@ -42,11 +43,15 @@ class KeyGenerator:
             d += fi_of_n
 
         self.public_key = (e, n)
-        self.private_key = (d, n)
+        private_key = (d, n)
 
-    def decode(self, encoded_message):
-        return pow(encoded_message, self.private_key[0], self.private_key[1])
+        if self.test == True:
+            self.private_key = private_key
 
+        def decode(encoded_message):
+            return pow(encoded_message, private_key[0], private_key[1])
+
+        self.decode = decode
 
 # keyGenerator = KeyGenerator(16)
 
