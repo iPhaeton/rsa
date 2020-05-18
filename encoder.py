@@ -11,7 +11,7 @@ class Encoder(AlphabetEncoder):
         encoded_message = pow(message, self.public_key[0]) % self.public_key[1]
         return encoded_message
 
-keyGenerator = KeyGenerator(10)
+keyGenerator = KeyGenerator(32)
 print(keyGenerator.public_key, keyGenerator.private_key)
 encoder = Encoder(keyGenerator.public_key)
 encoded_message = encoder.encode('Hi')

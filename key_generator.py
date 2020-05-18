@@ -53,7 +53,7 @@ class KeyGenerator:
         self.private_key = (d, n)
 
     def decode(self, encoded_message):
-        return pow(encoded_message, self.private_key[0]) % self.private_key[1]
+        return pow(encoded_message, self.private_key[0], self.private_key[1])
 
 
 # keyGenerator = KeyGenerator(16)
