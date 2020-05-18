@@ -1,8 +1,8 @@
 # ta + sb
 class Pulverizer:
     def initialize (self, a, b):
-        self.a = max(a, b)
-        self.b = min(a, b)
+        self.a = a
+        self.b = b
         self.t_queue = [0,1]
         self.s_queue = [0,1]
         self.t = 1
@@ -61,4 +61,10 @@ class Pulverizer:
 # print('Result:', gcd, t, s)
 
 # gcd, t, s = pulverizer.calculate_gcd(259, 70)
+# print('Result:', gcd, t, s)
+
+# gcd, t, s = pulverizer.calculate_gcd(3, 100)
+# print('Result:', gcd, t, s)
+
+# gcd, t, s = pulverizer.calculate_gcd(13, 256)
 # print('Result:', gcd, t, s)
