@@ -1,8 +1,10 @@
 from Crypto.Util import number
 from pulverizer import Pulverizer
+from alphabet import AlphabetDecoder
 
-class KeyGenerator:
+class KeyGenerator(AlphabetDecoder):
     def __init__(self, size, test = False):
+        super().__init__()
         self.size = size
         self.test = test
         self.pulverizer = Pulverizer()
@@ -48,8 +50,10 @@ class KeyGenerator:
         if self.test == True:
             self.private_key = private_key
 
+        alphabet_decoder = super()
         def decode(encoded_message):
-            return pow(encoded_message, private_key[0], private_key[1])
+            decoded_message = pow(encoded_message, private_key[0], private_key[1])
+            return alphabet_decoder.decode(decoded_message)
 
         self.decode = decode
 
