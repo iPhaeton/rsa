@@ -9,20 +9,16 @@ def decimal_to_binary(num):
 
 def modulo(numerator, exp, denominator):
     binary = decimal_to_binary(exp)
-    powers = set()
-
-    for i, reg in enumerate(binary[::-1]):
-        if (reg == '1'):
-            powers.add(pow(2, i))
 
     prev_result = numerator
     result = 1
-    for i in range(1, len(binary)):
+    for i in range(len(binary) - 2, -1, -1):
+        reg = binary[i]
         prev_result = (prev_result * prev_result) % denominator
-        if pow(2, i) in powers:
+        if (reg == '1'):
             result *= prev_result
         
-    if 1 in powers:
+    if binary[0] == '1':
         result *= numerator
     
     return result % denominator
