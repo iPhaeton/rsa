@@ -27,7 +27,7 @@ def modulo(numerator, exp, denominator):
     
     return result % denominator
 
-print(modulo(5, 149, 17))
+# print(modulo(5, 149, 17))
 
 # print(decimal_to_binary(0))
 # print(decimal_to_binary(1))
